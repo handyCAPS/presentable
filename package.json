@@ -1,0 +1,44 @@
+{
+  "name": "presentable",
+  "version": "1.0.0",
+  "description": "Show online as present",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handyCAPS/presentable.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Tim Doppenberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/handyCAPS/presentable/issues"
+  },
+  "homepage": "https://github.com/handyCAPS/presentable#readme",
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.23.1",
+    "postcss-loader": "^0.9.1",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
