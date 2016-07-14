@@ -1,0 +1,60 @@
+{
+    "personel": [
+        {
+            "ID": 0,
+            "Name": "Tim Toom",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        },
+        {
+            "ID": 1,
+            "Name": "Mark Park",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        },
+        {
+            "ID": 2,
+            "Name": "Johan Slohan",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        },
+        {
+            "ID": 3,
+            "Name": "Karel de Parel",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        },
+        {
+            "ID": 4,
+            "Name": "Gerrit van Erret",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        },
+        {
+            "ID": 5,
+            "Name": "Willem Stillem",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        },
+        {
+            "ID": 6,
+            "Name": "Karin Waarin",
+            "In": false,
+            "LastIn": 1468497990,
+            "LastOut": 1468497990,
+            "LastChange": 1468497990
+        }
+    ]
+}

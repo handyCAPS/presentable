@@ -2,6 +2,11 @@
 
 import React from 'react';
 
-const test = 'test';
+import { render } from 'react-dom';
 
-console.log("Test 3 ", test);
+
+import style from '../scss/main.scss';
+
+import Main from './components/Main';
+
+render(<Main >Some kids</Main>, document.getElementById('root'));
