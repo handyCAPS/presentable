@@ -4,21 +4,26 @@ import React from 'react';
 
 import { render } from 'react-dom';
 
-import Provider from 'react-redux';
+import { Provider } from 'react-redux';
 
 
 import Store from './Store';
 
 import style from '../scss/main.scss';
 
+
+import App from './App';
+
 import Main from './components/Main';
 
 
-const MyApp = (
+const Presentable = (
     <Provider store={Store}>
-        <Main></Main>
+        <App>
+            <Main />
+        </App>
     </Provider>
     );
 
 
-render(<MyApp />, document.getElementById('root'));
+render(Presentable, document.getElementById('root'));

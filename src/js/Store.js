@@ -6,7 +6,7 @@ import RootReducer from './reducers/index';
 import Personel from './json/personel.json';
 
 const defaultState = {
-    Personel
+    Personel: Personel.personel
 };
 
 const Store = createStore(RootReducer, defaultState);

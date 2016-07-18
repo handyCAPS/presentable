@@ -1,24 +1,19 @@
 
 import React from 'react';
 
-import 'whatwg-fetch';
 
 const Main = React.createClass({
 
-    componentDidMount() {
-        console.log("Stuff");
-        fetch('../../getPersonel.php')
-            .then(result => result.text())
-            .then(text => {
-                console.log("Text:" , text);
-            });
-    },
-
     render() {
+        console.log("chidlren", Array.isArray(this.props.personel));
         return (
-            <div className="mainWrap">
-                {this.props.children}
-            </div>
+            <main className="mainWrap">
+                <ul>
+                    {this.props.personel.map((person, index) => (
+                        <li key={index}>{person.Name}</li>
+                        ))}
+                </ul>
+            </main>
             );
     }
 

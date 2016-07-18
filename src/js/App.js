@@ -10,7 +10,7 @@ import Main from './components/Main';
 
 function mapStateToProps(state) {
     return {
-        personel: state.personel
+        personel: state.Personel
     };
 }
 
