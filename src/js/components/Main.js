@@ -2,17 +2,32 @@
 import React from 'react';
 
 
+import PersonelItem from './PersonelItem.js'
+
 const Main = React.createClass({
 
+    handleChangePresence(index, isPresent) {
+        this.props.changePresence(index, isPresent);
+    },
+
     render() {
-        console.log("chidlren", Array.isArray(this.props.personel));
         return (
             <main className="mainWrap">
-                <ul>
-                    {this.props.personel.map((person, index) => (
-                        <li key={index}>{person.Name}</li>
-                        ))}
-                </ul>
+                <div className="personel">
+                    <ul className="personel--list">
+                        {this.props.personel.map((person, index) => {
+                            let isPresent = person.In;
+                            return (
+                            <PersonelItem
+                                key={index}
+                                index={index}
+                                name={person.Name}
+                                isPresent={isPresent}
+                                handleChangePresence={this.handleChangePresence} />
+                            );
+                        }, this)}
+                    </ul>
+                </div>
             </main>
             );
     }

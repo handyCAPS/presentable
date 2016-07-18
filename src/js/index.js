@@ -14,14 +14,10 @@ import style from '../scss/main.scss';
 
 import App from './App';
 
-import Main from './components/Main';
-
 
 const Presentable = (
     <Provider store={Store}>
-        <App>
-            <Main />
-        </App>
+        <App />
     </Provider>
     );
 
