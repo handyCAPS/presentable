@@ -2,7 +2,10 @@ import { expect } from 'chai';
 
 import Path from '../Path';
 
+const Personel = require(Path.reducers + '/Personel');
+
 describe('Testing test', () => {
-    console.log("Path: ", Path.reducers);
-    expect(true).to.equal(true);
+    it('should behave', () => {
+        console.log("Woop");
+    });
 });
