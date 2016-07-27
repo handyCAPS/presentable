@@ -24,7 +24,7 @@ describe('Testing Personel', () => {
             "LastChange": Now
         }];
     const changeAction = changePresence(0, true);
-    console.log("Now", Now);
+
     it('should change the presence based on the index', () => {
         expect(Personel(initialState, changeAction)).to.deep.equal(changedState);
     });

@@ -2,7 +2,7 @@ import React from 'react';
 
 import PersonelItem from './PersonelItem';
 
-const PersonelList = React.createComponent({
+const PersonelList = React.createClass({
 
     handleChangePresence(index, isPresent) {
         this.props.changePresence(index, isPresent);
