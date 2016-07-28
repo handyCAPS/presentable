@@ -8,7 +8,13 @@ import Path from '../Path';
 
 const PersonelList = require(Path.components + '/PersonelList').default;
 
+const Personel = require(Path.json + '/personel.json').personel;
+
 describe("<PersonelList />", () => {
-    let wrapper = shallow(<PersonelList />);
-    expect(wrapper).to.exist;
+    it("should make a PersonelList", () => {
+        let wrapper = shallow(<PersonelList personel={Personel} />);
+        expect(wrapper).to.exist;
+        expect(wrapper.hasClass('personel')).to.be.true;
+        expect(wrapper.type()).to.equal('div');
+    });
 });
