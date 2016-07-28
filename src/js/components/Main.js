@@ -9,7 +9,7 @@ const Main = React.createClass({
     render() {
         return (
             <main className="mainWrap">
-                <PersonelList />
+                <PersonelList {...this.props} />
             </main>
             );
     }

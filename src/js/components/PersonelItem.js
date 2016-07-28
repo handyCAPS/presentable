@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import PersonelSignal from './PersonelSignal';
+
 const PersonelItem = React.createClass({
     render() {
         let classList = ['personel--item'];
@@ -8,7 +10,15 @@ const PersonelItem = React.createClass({
             classList.push('present');
         }
         return (
-                <li className={classList.join(' ')} onClick={this.props.handleChangePresence.bind(null, this.props.index, !this.props.isPresent)}>{this.props.name}</li>
+                <div className="personel-wrapper">
+                    <PersonelSignal type="in" />
+                    <div
+                        className={classList.join(' ')}
+                        onClick={this.props.handleChangePresence.bind(null, this.props.index, !this.props.isPresent)}>
+                        {this.props.name}
+                    </div>
+                    <PersonelSignal type="out" />
+                </div>
             );
     }
 });
