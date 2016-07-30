@@ -11,16 +11,20 @@ const PersonelList = React.createClass({
     render() {
         return (
             <div className="personel">
-                {this.props.personel.map((person, index) => {
-                    return (
-                        <PersonelItem
-                            key={index}
-                            index={index}
-                            name={person.Name}
-                            isPresent={person.In}
-                            handleChangePresence={this.handleChangePresence} />
-                        );
-                })}
+                <div className="personel__list">
+                    {this.props.personel.map((person, index) => {
+                        return (
+                            <PersonelItem
+                                key={index}
+                                index={index}
+                                name={person.Name}
+                                isPresent={person.In}
+                                selectedUser={this.props.selectedUser}
+                                handleSelectUser={this.props.handleSelectUser}
+                                handleChangePresence={this.handleChangePresence} />
+                            );
+                    })}
+                </div>
             </div>
             );
     }

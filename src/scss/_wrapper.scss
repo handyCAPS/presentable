@@ -1,0 +1,19 @@
+$oneThird: 100/ 3;
+$twoThird: 100 / 1.5;
+
+$leftWidth: 50 + %;
+$rightWidth: 50 + %;
+
+.wrapper {
+    position: relative;
+}
+
+.wrapper__personel {
+    width: $leftWidth;
+    float: left;
+}
+
+.wrapper__info {
+    width: $rightWidth;
+    float: left;
+}
