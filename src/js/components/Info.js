@@ -5,7 +5,7 @@ import InfoText from './InfoText';
 
 const Info = React.createClass({
     getNiceTime(timestamp) {
-        const time = new Date(timestamp * 1000);
+        const time = new Date(timestamp);
         let mins = time.getMinutes();
         if (mins < 10) { mins = '0' + mins; }
         const timeString = time.toLocaleDateString() + " om " + time.getHours() + ':' + mins;
