@@ -2,7 +2,7 @@
 import React from 'react';
 
 import InfoText from './InfoText';
-import InOutButton from './InOutButton';
+import NameSlide from './NameSlide';
 
 const Info = React.createClass({
     getNiceTime(timestamp) {
@@ -24,13 +24,21 @@ const Info = React.createClass({
         const lastInTime = User.In ? 'Nu' : this.getNiceTime(User.LastIn);
         const lastOutTime = !User.In ? 'Nu' : this.getNiceTime(User.LastOut);
 
+        const classNamesName = [];
+        if (User.In) { classNamesName.push('present'); }
+
         return (
             <div className="info">
                 <h2 className="info__header">{User.Name}</h2>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label="Laatst aanwezig" text={lastInTime} />
                 <InfoText label="Laatst afwezig" text={lastOutTime} />
-                <InOutButton className={buttonClass} text={buttonText} handleClick={this.handleInOutClick} />
+                <NameSlide
+                    index={this.props.selectedUser}
+                    name={User.Name}
+                    classNamesWrap={['info__name-slider']}
+                    classNamesName={classNamesName}
+                    handleClick={this.handleInOutClick}/>
             </div>
             );
     }
