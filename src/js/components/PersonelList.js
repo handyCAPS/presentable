@@ -4,10 +4,6 @@ import PersonelItem from './PersonelItem';
 
 const PersonelList = React.createClass({
 
-    handleChangePresence(index, isPresent) {
-        this.props.changePresence(index, isPresent);
-    },
-
     handleClick(index) {
         this.props.handleSelectUser(index);
     },

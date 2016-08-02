@@ -2,6 +2,7 @@
 import React from 'react';
 
 import InfoText from './InfoText';
+import InOutButton from './InOutButton';
 
 const Info = React.createClass({
     getNiceTime(timestamp) {
@@ -11,10 +12,14 @@ const Info = React.createClass({
         const timeString = time.toLocaleDateString() + " om " + time.getHours() + ':' + mins;
         return timeString;
     },
+    handleInOutClick() {
+        this.props.changePresence(this.props.selectedUser, !this.props.personel[this.props.selectedUser].In);
+    },
     render() {
         const User = this.props.personel[this.props.selectedUser];
 
         const presentText = ['Nee', 'Ja'][User.In * 1];
+        const buttonText = User.In ? 'Out' : 'In';
         const lastInTime = User.In ? 'Nu' : this.getNiceTime(User.LastIn);
         const lastOutTime = !User.In ? 'Nu' : this.getNiceTime(User.LastOut);
 
@@ -24,6 +29,7 @@ const Info = React.createClass({
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label="Laatst aanwezig" text={lastInTime} />
                 <InfoText label="Laatst afwezig" text={lastOutTime} />
+                <InOutButton text={buttonText} handleClick={this.handleInOutClick} />
             </div>
             );
     }
