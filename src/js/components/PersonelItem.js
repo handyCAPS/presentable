@@ -10,20 +10,17 @@ const PersonelItem = React.createClass({
             classList.push('present');
         }
         const isSelectedUser = this.props.index === this.props.selectedUser;
-        if (isSelectedUser){ classList.push('isSelectedUser'); }
+        if (isSelectedUser) { classList.push('isSelectedUser'); }
         return (
                 <div className="wrapper">
                     <div className="personel__item">
                         <PersonelSignal type="in" />
                         <div
                             className={classList.join(' ')}
-                            onClick={this.props.handleChangePresence.bind(null, this.props.index, !this.props.isPresent)}>
+                            onClick={this.props.handleClick.bind(null, this.props.index)}>
                             {this.props.name}
                         </div>
                         <PersonelSignal type="out" />
-                    </div>
-                    <div className="checkboxWrap">
-                        <input type="checkbox" className="selectUser" onChange={this.props.handleSelectUser.bind(null, this.props.index)} checked={isSelectedUser} />
                     </div>
                 </div>
             );

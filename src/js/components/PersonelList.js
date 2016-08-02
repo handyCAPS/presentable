@@ -8,6 +8,10 @@ const PersonelList = React.createClass({
         this.props.changePresence(index, isPresent);
     },
 
+    handleClick(index) {
+        this.props.handleSelectUser(index);
+    },
+
     render() {
         return (
             <div className="personel">
@@ -20,8 +24,7 @@ const PersonelList = React.createClass({
                                 name={person.Name}
                                 isPresent={person.In}
                                 selectedUser={this.props.selectedUser}
-                                handleSelectUser={this.props.handleSelectUser}
-                                handleChangePresence={this.handleChangePresence} />
+                                handleClick={this.handleClick} />
                             );
                     })}
                 </div>
