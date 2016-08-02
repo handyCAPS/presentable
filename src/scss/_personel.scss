@@ -8,7 +8,7 @@
 
 }
 
-.personel__item {
+.name-slider {
     font-size: 1.5rem;
     position: relative;
     width: 100%;
@@ -23,7 +23,7 @@
         }
 }
 
-.personel__name {
+.name-slider__name {
     cursor: pointer;
     color: #555;
     text-align: center;
@@ -43,6 +43,7 @@
 
 .signal {
     text-align: center;
+    text-transform: uppercase;
     width: 100px;
     top: 0;
     color: #FFF;
@@ -50,10 +51,10 @@
         &.in {
             position: relative;
             left: 0;
-            background-color: #0f0;
+            background-color: $green;
         }
         &.out {
-            background-color: #f00;
+            background-color: $red;
             position: absolute;
             right: 0;
         }

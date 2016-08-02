@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PersonelItem from './PersonelItem';
+import NameSlide from './NameSlide';
 
 const PersonelList = React.createClass({
 
@@ -13,13 +13,21 @@ const PersonelList = React.createClass({
             <div className="personel">
                 <div className="personel__list">
                     {this.props.personel.map((person, index) => {
+                        let classNamesWrap = [];
+                        let classNamesName = ['personel__name'];
+                        if (this.props.selectedUser === index) {
+                            classNamesName.push('isSelectedUser');
+                        }
+                        if (person.In) {
+                            classNamesName.push('present');
+                        }
                         return (
-                            <PersonelItem
+                            <NameSlide
                                 key={index}
                                 index={index}
                                 name={person.Name}
-                                isPresent={person.In}
-                                selectedUser={this.props.selectedUser}
+                                classNamesName={classNamesName}
+                                classNamesWrap={classNamesWrap}
                                 handleClick={this.handleClick} />
                             );
                     })}

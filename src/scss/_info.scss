@@ -9,12 +9,12 @@
 
 .info__button {
     cursor: pointer;
-    background-color: #0F0;
+    background-color: $green;
     width: 100%;
     font-size: 1.618rem;
     padding: 0.343em 0.618em;
     color: #FFF;
         &.btn--Out {
-            background-color: #F00;
+            background-color: $red;
         }
 }

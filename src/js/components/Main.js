@@ -2,7 +2,6 @@
 import React from 'react';
 
 import PersonelList from './PersonelList';
-import PersonelItem from './PersonelItem.js';
 import Info from './Info';
 
 const Main = React.createClass({

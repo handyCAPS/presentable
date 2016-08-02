@@ -19,7 +19,8 @@ const Info = React.createClass({
         const User = this.props.personel[this.props.selectedUser];
 
         const presentText = ['Nee', 'Ja'][User.In * 1];
-        const buttonText = User.In ? 'Out' : 'In';
+        const buttonText = 'Sign ' + (User.In ? 'Out' : 'In');
+        const buttonClass = User.In ? 'In' : 'Out';
         const lastInTime = User.In ? 'Nu' : this.getNiceTime(User.LastIn);
         const lastOutTime = !User.In ? 'Nu' : this.getNiceTime(User.LastOut);
 
@@ -29,7 +30,7 @@ const Info = React.createClass({
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label="Laatst aanwezig" text={lastInTime} />
                 <InfoText label="Laatst afwezig" text={lastOutTime} />
-                <InOutButton text={buttonText} handleClick={this.handleInOutClick} />
+                <InOutButton className={buttonClass} text={buttonText} handleClick={this.handleInOutClick} />
             </div>
             );
     }
