@@ -24,8 +24,15 @@ const Info = React.createClass({
         const lastInTime = User.In ? 'Nu' : this.getNiceTime(User.LastIn);
         const lastOutTime = !User.In ? 'Nu' : this.getNiceTime(User.LastOut);
 
-        const classNamesName = [];
+        let classNamesName = [];
         if (User.In) { classNamesName.push('present'); }
+
+        let classNamesWrap = ['info__name-slider'];
+
+        const classNames = {
+            wrap: classNamesWrap,
+            name: classNamesName
+        };
 
         return (
             <div className="info">
@@ -35,9 +42,8 @@ const Info = React.createClass({
                 <InfoText label="Laatst afwezig" text={lastOutTime} />
                 <NameSlide
                     index={this.props.selectedUser}
-                    name={User.Name}
-                    classNamesWrap={['info__name-slider']}
-                    classNamesName={classNamesName}
+                    name="Change"
+                    classNames={classNames}
                     handleClick={this.handleInOutClick}/>
             </div>
             );

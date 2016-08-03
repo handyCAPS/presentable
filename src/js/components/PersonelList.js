@@ -21,13 +21,16 @@ const PersonelList = React.createClass({
                         if (person.In) {
                             classNamesName.push('present');
                         }
+                        const classNames = {
+                            wrap: classNamesWrap,
+                            name: classNamesName
+                        };
                         return (
                             <NameSlide
                                 key={index}
                                 index={index}
                                 name={person.Name}
-                                classNamesName={classNamesName}
-                                classNamesWrap={classNamesWrap}
+                                classNames={classNames}
                                 handleClick={this.handleClick} />
                             );
                     })}

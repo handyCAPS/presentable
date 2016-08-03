@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const PersonelSignal = ({
+const NameSignal = ({
     type
 }) => {
     let classList = ['signal', type];
@@ -10,4 +10,4 @@ const PersonelSignal = ({
         );
 };
 
-export default PersonelSignal;
+export default NameSignal;
