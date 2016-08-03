@@ -11,6 +11,17 @@ const Main = React.createClass({
         this.props.changeSelectedUser(index);
     },
 
+    getNameSlideClassNames() {
+        let classNames = {
+            wrap: ['top-slider'],
+            name: []
+        };
+        if (this.props.personel[this.props.selectedUser.index].In) {
+            classNames.name.push('present');
+        }
+        return classNames;
+    },
+
     render() {
         return (
             <main className="mainWrap">
@@ -18,13 +29,10 @@ const Main = React.createClass({
                 <NameSlide
                     index={this.props.selectedUser.index}
                     name={this.props.personel[this.props.selectedUser.index].Name}
-                    classNames={{
-                        wrap: ['top-slider'],
-                        name: []
-                    }}
-                    handleClick={this.handleSelectUser} />
+                    classNames={this.getNameSlideClassNames()}
+                    handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index)} />
                 <div className="wrapper wrapper__personel">
-                    <PersonelList selectedUser={this.props.selectedUser.index} handleSelectUser={this.handleSelectUser} {...this.props} />
+                    <PersonelList handleSelectUser={this.handleSelectUser} {...this.props} />
                 </div>
                 <div className="wrapper wrapper__info">
                     <Info selectedUser={this.props.selectedUser.index} {...this.props} />

@@ -1,4 +1,9 @@
 {
+    "settings": {
+        "selectedUser": {
+            "index": 0
+        }
+        },
     "personel": [
         {
             "ID": 0,
@@ -27,7 +32,7 @@
         {
             "ID": 3,
             "Name": "Karel de Parel",
-            "In": false,
+            "In": true,
             "LastIn": 1468497990,
             "LastOut": 1468497990,
             "LastChange": 1468497990

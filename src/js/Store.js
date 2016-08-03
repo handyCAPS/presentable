@@ -7,9 +7,7 @@ import Personel from './json/personel.json';
 
 const defaultState = {
     Personel: Personel.personel,
-    SelectedUser: {
-        index: 0
-    }
+    SelectedUser: Personel.settings.selectedUser
 };
 
 const Store = createStore(RootReducer, defaultState);
