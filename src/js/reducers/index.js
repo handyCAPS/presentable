@@ -2,9 +2,11 @@
 import { combineReducers } from 'redux';
 
 import Personel from './Personel';
+import SelectedUser from './SelectedUser';
 
 const RootReducer = combineReducers({
-    Personel
+    Personel,
+    SelectedUser
 });
 
 export default RootReducer;

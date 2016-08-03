@@ -13,10 +13,10 @@ const Info = React.createClass({
         return timeString;
     },
     handleInOutClick() {
-        this.props.changePresence(this.props.selectedUser, !this.props.personel[this.props.selectedUser].In);
+        this.props.changePresence(this.props.selectedUser.index, !this.props.personel[this.props.selectedUser.index].In);
     },
     render() {
-        const User = this.props.personel[this.props.selectedUser];
+        const User = this.props.personel[this.props.selectedUser.index];
 
         const presentText = ['Nee', 'Ja'][User.In * 1];
         const buttonText = 'Sign ' + (User.In ? 'Out' : 'In');

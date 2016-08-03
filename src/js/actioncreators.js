@@ -7,3 +7,10 @@ export function changePresence(index, isPresent) {
         isPresent
     };
 }
+
+export function changeSelectedUser(index) {
+    return {
+        type: 'CHANGE_SELECTED_USER',
+        index
+    };
+}
