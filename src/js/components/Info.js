@@ -13,7 +13,7 @@ const Info = React.createClass({
         return timeString;
     },
     handleInOutClick() {
-        this.props.changePresence(this.props.selectedUser.index, !this.props.personel[this.props.selectedUser.index].In);
+        this.props.changePresence(this.props.selectedUser.index);
     },
     render() {
         const User = this.props.personel[this.props.selectedUser.index];

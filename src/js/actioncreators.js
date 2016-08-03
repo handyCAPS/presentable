@@ -1,10 +1,9 @@
 
 
-export function changePresence(index, isPresent) {
+export function changePresence(index) {
     return {
         type: 'CHANGE_PRESENCE',
-        index,
-        isPresent
+        index
     };
 }
 
