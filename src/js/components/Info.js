@@ -5,12 +5,41 @@ import InfoText from './InfoText';
 import NameSlide from './NameSlide';
 
 const Info = React.createClass({
+    getInitialState() {
+        return {
+            timer: {
+                started: 0,
+                timePassed: 0
+            }
+        };
+    },
     getNiceTime(timestamp) {
         const time = new Date(timestamp);
         let mins = time.getMinutes();
         if (mins < 10) { mins = '0' + mins; }
         const timeString = time.toLocaleDateString() + " om " + time.getHours() + ':' + mins;
         return timeString;
+    },
+    getTimeByUnit(seconds) {
+        const secondsLeft = seconds % 60;
+        const minutesPassed = (seconds - secondsLeft) / 60;
+        const minutesLeft = minutesPassed % 60;
+        const hoursPassed = (minutesPassed - minutesLeft) / 60;
+        const hoursLeft = hoursPassed % 24;
+        const daysPassed = (hoursPassed - hoursLeft) / 24;
+        return {
+            days: daysPassed,
+            hours: hoursLeft,
+            minutes: minutesLeft,
+            seconds: secondsLeft
+        };
+    },
+    getPassedTime(timestamp) {
+        const now = Date.now();
+        const secondsPassed = Math.floor((now - timestamp) / 1000);
+        const times = getTimeByUnit(secondsPassed);
+
+        return times.days + ' Dagen, ' + time.hours + ' uur, ' + time.seconds + ' seconden';
     },
     handleInOutClick() {
         this.props.changePresence(this.props.selectedUser.index);
@@ -37,6 +66,7 @@ const Info = React.createClass({
         return (
             <div className="info">
                 <h2 className="info__header">{User.Name}</h2>
+                <p>{this.getPassedTime(User.LastChange)}</p>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label="Laatst aanwezig" text={lastInTime} />
                 <InfoText label="Laatst afwezig" text={lastOutTime} />

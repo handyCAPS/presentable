@@ -1,6 +1,7 @@
 
-/node_modules
-/.sass-cache
-/.webpack-cache
+node_modules/
+.sass-cache/
+.webpack-cache/
 
-/dist
+dist/
+.gtm/
