@@ -13,3 +13,10 @@ export function changeSelectedUser(index) {
         index
     };
 }
+
+export function updatePersonel(newState) {
+    return {
+        type: 'UPDATE_PERSONEL',
+        newState
+    };
+}

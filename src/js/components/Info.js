@@ -37,9 +37,9 @@ const Info = React.createClass({
     getPassedTime(timestamp) {
         const now = Date.now();
         const secondsPassed = Math.floor((now - timestamp) / 1000);
-        const times = getTimeByUnit(secondsPassed);
+        const times = this.getTimeByUnit(secondsPassed);
 
-        return times.days + ' Dagen, ' + time.hours + ' uur, ' + time.seconds + ' seconden';
+        return times.days + ' Dagen, ' + times.hours + ' uur, ' + times.seconds + ' seconden';
     },
     handleInOutClick() {
         this.props.changePresence(this.props.selectedUser.index);

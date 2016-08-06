@@ -6,8 +6,10 @@ import RootReducer from './reducers/index';
 import Personel from './json/personel.json';
 
 const defaultState = {
-    Personel: Personel.personel,
-    SelectedUser: Personel.settings.selectedUser
+    Personel: [],
+    SelectedUser: {
+        index: 0
+    }
 };
 
 const Store = createStore(RootReducer, defaultState);

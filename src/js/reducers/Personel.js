@@ -17,8 +17,11 @@ function Personel(state = [], action) {
                 }
                 return person;
             });
+        case 'UPDATE_PERSONEL':
+            return action.newState;
+        default:
+            return state;
     }
-    return state;
 }
 
 export default Personel;
