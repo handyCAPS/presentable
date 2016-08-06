@@ -39,22 +39,34 @@ const Info = React.createClass({
         const secondsPassed = Math.floor((now - timestamp) / 1000);
         const times = this.getTimeByUnit(secondsPassed);
 
-        return times.days + ' Dagen, ' + times.hours + ' uur, ' + times.seconds + ' seconden';
+        const verbs = {
+            days: 'dagen',
+            hours: 'uur',
+            minutes: 'minuten',
+            seconds: 'seconden'
+        };
+
+        const timeArray = [];
+
+        for (let unit in verbs) {
+            timeArray.push([times[unit], verbs[unit]]);
+        }
+
+        const timeString = timeArray.map(v => v.join(' ')).join(', ');
+
+        return timeString;
     },
     handleInOutClick() {
         this.props.changePresence(this.props.selectedUser.index);
     },
     render() {
         const User = this.props.personel[this.props.selectedUser.index];
+        const isPresent = User.In;
 
-        const presentText = ['Nee', 'Ja'][User.In * 1];
-        const buttonText = 'Sign ' + (User.In ? 'Out' : 'In');
-        const buttonClass = User.In ? 'In' : 'Out';
-        const lastInTime = User.In ? 'Nu' : this.getNiceTime(User.LastIn);
-        const lastOutTime = !User.In ? 'Nu' : this.getNiceTime(User.LastOut);
+        const presentText = isPresent ? 'Ja' : 'Nee';
 
         let classNamesName = [];
-        if (User.In) { classNamesName.push('present'); }
+        if (isPresent) { classNamesName.push('present'); }
 
         let classNamesWrap = ['info__name-slider'];
 
@@ -63,13 +75,14 @@ const Info = React.createClass({
             name: classNamesName
         };
 
+        let lastLabel = 'Laatst ' + (isPresent ? 'afwezig' : 'aanwezig');
+
         return (
             <div className="info">
                 <h2 className="info__header">{User.Name}</h2>
                 <p>{this.getPassedTime(User.LastChange)}</p>
                 <InfoText label="Aanwezig" text={presentText} />
-                <InfoText label="Laatst aanwezig" text={lastInTime} />
-                <InfoText label="Laatst afwezig" text={lastOutTime} />
+                <InfoText label={lastLabel} text={this.getNiceTime(User.LastChange)} />
                 <NameSlide
                     index={this.props.selectedUser}
                     name="Change"
