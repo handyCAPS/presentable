@@ -1,0 +1,30 @@
+
+.counting-clock {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.ticker {
+    $marginRight: 16;
+    $marginCorrection: $marginRight - ($marginRight / 4);
+    display: inline-block;
+    width: calc(25% - #{$marginCorrection + px});
+    border: 1px solid lightgrey;
+        &:not(:last-of-type) {
+            margin-right: $marginRight + px;
+        }
+}
+
+.ticker__label {
+    font-weight: bold;
+    background-color: #F8F8F8;
+    text-shadow:  1px 1px #FFF;
+    padding: 0.343rem 0;
+    border-bottom: 1px solid lightgrey;
+}
+
+.ticker__value {
+    font-size: 1.618rem;
+    padding: 1em 0;
+    background-color: #fff;
+}

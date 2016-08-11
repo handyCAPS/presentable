@@ -3,6 +3,7 @@ import React from 'react';
 
 import InfoText from './InfoText';
 import NameSlide from './NameSlide';
+import CountingClock from './CountingClock';
 
 const Info = React.createClass({
     getInitialState() {
@@ -34,10 +35,14 @@ const Info = React.createClass({
             seconds: secondsLeft
         };
     },
-    getPassedTime(timestamp) {
+    getPassedSeconds(timestamp) {
         const now = Date.now();
         const secondsPassed = Math.floor((now - timestamp) / 1000);
-        const times = this.getTimeByUnit(secondsPassed);
+
+        return secondsPassed;
+    },
+    getTimeString(seconds) {
+        const times = this.getTimeByUnit(seconds);
 
         const verbs = {
             days: 'dagen',
@@ -55,6 +60,27 @@ const Info = React.createClass({
         const timeString = timeArray.map(v => v.join(' ')).join(', ');
 
         return timeString;
+    },
+    getTimerObject(timestamp) {
+        const secondsPassed = this.getPassedSeconds(timestamp);
+        const times = this.getTimeByUnit(secondsPassed);
+        const labels = {
+            days: 'Dag',
+            hours: 'Uur',
+            minutes: 'Min',
+            seconds: 'Sec'
+        };
+
+        let timerObject = {};
+
+        for (let unit in labels) {
+            timerObject[unit] = {
+                label: labels[unit],
+                value: times[unit]
+            };
+        }
+
+        return timerObject;
     },
     handleInOutClick() {
         this.props.changePresence(this.props.selectedUser.index);
@@ -80,9 +106,10 @@ const Info = React.createClass({
         return (
             <div className="info">
                 <h2 className="info__header">{User.Name}</h2>
-                <p>{this.getPassedTime(User.LastChange)}</p>
+                <p>{this.getTimeString(this.getPassedSeconds(User.LastChange))}</p>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label={lastLabel} text={this.getNiceTime(User.LastChange)} />
+                <CountingClock timer={this.getTimerObject(User.LastChange)} />
                 <NameSlide
                     index={this.props.selectedUser}
                     name="Change"
