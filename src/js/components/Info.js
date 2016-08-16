@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import Timing from '../utils/Timing';
+
 import InfoText from './InfoText';
 import NameSlide from './NameSlide';
 import CountingClock from './CountingClock';
@@ -21,28 +23,8 @@ const Info = React.createClass({
         const timeString = time.toLocaleDateString() + " om " + time.getHours() + ':' + mins;
         return timeString;
     },
-    getTimeByUnit(seconds) {
-        const secondsLeft = seconds % 60;
-        const minutesPassed = (seconds - secondsLeft) / 60;
-        const minutesLeft = minutesPassed % 60;
-        const hoursPassed = (minutesPassed - minutesLeft) / 60;
-        const hoursLeft = hoursPassed % 24;
-        const daysPassed = (hoursPassed - hoursLeft) / 24;
-        return {
-            days: daysPassed,
-            hours: hoursLeft,
-            minutes: minutesLeft,
-            seconds: secondsLeft
-        };
-    },
-    getPassedSeconds(timestamp) {
-        const now = Date.now();
-        const secondsPassed = Math.floor((now - timestamp) / 1000);
-
-        return secondsPassed;
-    },
     getTimeString(seconds) {
-        const times = this.getTimeByUnit(seconds);
+        const times = Timing.getTimeByUnit(seconds);
 
         const verbs = {
             days: 'dagen',
@@ -61,27 +43,6 @@ const Info = React.createClass({
 
         return timeString;
     },
-    getTimerObject(timestamp) {
-        const secondsPassed = this.getPassedSeconds(timestamp);
-        const times = this.getTimeByUnit(secondsPassed);
-        const labels = {
-            days: 'Dag',
-            hours: 'Uur',
-            minutes: 'Min',
-            seconds: 'Sec'
-        };
-
-        let timerObject = {};
-
-        for (let unit in labels) {
-            timerObject[unit] = {
-                label: labels[unit],
-                value: times[unit]
-            };
-        }
-
-        return timerObject;
-    },
     handleInOutClick() {
         this.props.changePresence(this.props.selectedUser.index);
     },
@@ -89,27 +50,33 @@ const Info = React.createClass({
         const User = this.props.personel[this.props.selectedUser.index];
         const isPresent = User.In;
 
-        const presentText = isPresent ? 'Ja' : 'Nee';
-
-        let classNamesName = [];
-        if (isPresent) { classNamesName.push('present'); }
-
-        let classNamesWrap = ['info__name-slider'];
-
-        const classNames = {
-            wrap: classNamesWrap,
-            name: classNamesName
+        const classList = ['info'];
+        let presenceClass = 'isNotPresent';
+        let presentText = 'Nee';
+        let lastLabel = 'Laatst aanwezig';
+        let classNames = {
+            wrap: ['info__name-slider'],
+            name: []
         };
 
-        let lastLabel = 'Laatst ' + (isPresent ? 'afwezig' : 'aanwezig');
+        if (isPresent) {
+            presenceClass = 'isPresent';
+            presentText = 'Ja';
+            lastLabel = 'Laatst afwezig';
+            classNames.name.push('present');
+        }
+
+        classList.push(presenceClass);
+
+        const lastText = this.getNiceTime(User.LastChange);
 
         return (
-            <div className="info">
+            <div className={classList.join(' ')}>
                 <h2 className="info__header">{User.Name}</h2>
-                <p>{this.getTimeString(this.getPassedSeconds(User.LastChange))}</p>
+                <p>{this.getTimeString(Timing.getPassedSeconds(User.LastChange))}</p>
                 <InfoText label="Aanwezig" text={presentText} />
-                <InfoText label={lastLabel} text={this.getNiceTime(User.LastChange)} />
-                <CountingClock timer={this.getTimerObject(User.LastChange)} />
+                <InfoText label={lastLabel} text={lastText} />
+                <CountingClock timer={Timing.getTimerObject(User.LastChange)} />
                 <NameSlide
                     index={this.props.selectedUser}
                     name="Change"

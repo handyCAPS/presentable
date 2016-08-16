@@ -1,7 +1,7 @@
 
 
 function Personel(state = [], action) {
-    const Now = Math.floor(Date.now());
+    const Now = Date.now();
     switch (action.type) {
         case 'CHANGE_PRESENCE':
             const isPresent = state[action.index].In;
