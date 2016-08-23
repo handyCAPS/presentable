@@ -26,7 +26,8 @@ const Ticker = React.createClass({
         return val > 9 ? val : ('0' + val);
     },
     tickOver() {
-        const newTick = this.state.tick + 1;
+        let newTick = this.state.tick + 1;
+        if (newTick > 59) { newTick = 0; }
         this.setState({ tick: newTick });
     },
     setTicker() {
