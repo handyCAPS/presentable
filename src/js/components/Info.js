@@ -76,7 +76,7 @@ const Info = React.createClass({
                 <p>{this.getTimeString(Timing.getPassedSeconds(User.LastChange))}</p>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label={lastLabel} text={lastText} />
-                <CountingClock timer={Timing.getTimerObject(User.LastChange)} />
+                <CountingClock timer={Timing.getTimerObject(User.LastChange)} timestamp={User.LastChange} />
                 <NameSlide
                     index={this.props.selectedUser}
                     name="Change"
