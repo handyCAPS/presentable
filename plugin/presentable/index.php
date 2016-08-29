@@ -17,3 +17,60 @@
 if ( ! defined( 'WPINC' ) ){
     die;
 }
+
+
+/**
+* Registers a new post type
+* @uses $wp_post_types Inserts new post type object into the list
+*
+* @param string  Post type key, must not exceed 20 characters
+* @param array|string  See optional args description above.
+* @return object|WP_Error the registered post type object, or an error object
+*/
+function add_presentable_post_type() {
+
+    $labels = array(
+        'name'                => __( 'Presentables', 'presentable-js' ),
+        'singular_name'       => __( 'Presentable', 'presentable-js' ),
+        'add_new'             => _x( 'Add New presentable', 'presentable-js', 'presentable-js' ),
+        'add_new_item'        => __( 'Add New presentable', 'presentable-js' ),
+        'edit_item'           => __( 'Edit presentable', 'presentable-js' ),
+        'new_item'            => __( 'New presentable', 'presentable-js' ),
+        'view_item'           => __( 'View presentable', 'presentable-js' ),
+        'search_items'        => __( 'Search Presentables', 'presentable-js' ),
+        'not_found'           => __( 'No Presentables found', 'presentable-js' ),
+        'not_found_in_trash'  => __( 'No Presentables found in Trash', 'presentable-js' ),
+        'parent_item_colon'   => __( 'Parent presentable:', 'presentable-js' ),
+        'menu_name'           => __( 'Presentables', 'presentable-js' ),
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'hierarchical'        => false,
+        'description'         => 'description',
+        'taxonomies'          => array(),
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => null,
+        'menu_icon'           => null,
+        'show_in_nav_menus'   => true,
+        'publicly_queryable'  => true,
+        'exclude_from_search' => false,
+        'has_archive'         => true,
+        'query_var'           => true,
+        'can_export'          => true,
+        'rewrite'             => true,
+        'capability_type'     => 'post',
+        'supports'            => array(
+            'title', 'editor', 'author', 'thumbnail',
+            'excerpt','custom-fields', 'trackbacks', 'comments',
+            'revisions', 'page-attributes', 'post-formats'
+            )
+    );
+
+    register_post_type( 'presentable', $args );
+}
+
+add_action( 'init', 'add_presentable_post_type' );
