@@ -64,7 +64,12 @@ function add_presentable_post_type() {
         'rewrite'             => true,
         'capability_type'     => 'post',
         'supports'            => array(
+<<<<<<< 10f1cbc017b51186b98828d9126340f76ede5061
             'title','custom-fields', 'revisions', 'page-attributes', 'post-formats'
+=======
+            'title','custom-fields',
+            'revisions', 'page-attributes', 'post-formats'
+>>>>>>> dfgdffg
             )
     );
 
