@@ -11,7 +11,9 @@ import Main from './components/Main';
 function mapStateToProps(state) {
     return {
         personel: state.Personel,
-        selectedUser: state.SelectedUser
+        selectedUser: {
+            index: 0
+        }
     };
 }
 

@@ -48,7 +48,7 @@ const Info = React.createClass({
     },
     render() {
         const User = this.props.personel[this.props.selectedUser.index];
-        const isPresent = User.In;
+        const isPresent = User.present;
 
         const classList = ['info'];
         let presenceClass = 'isNotPresent';
@@ -73,10 +73,10 @@ const Info = React.createClass({
         return (
             <div className={classList.join(' ')}>
                 <h2 className="info__header">{User.Name}</h2>
-                <p>{this.getTimeString(Timing.getPassedSeconds(User.LastChange))}</p>
+                <p>{this.getTimeString(Timing.getPassedSeconds(User.lastChange))}</p>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label={lastLabel} text={lastText} />
-                <CountingClock timer={Timing.getTimerObject(User.LastChange)} timestamp={User.LastChange} />
+                <CountingClock timer={Timing.getTimerObject(User.lastChange)} timestamp={User.lastChange} />
                 <NameSlide
                     index={this.props.selectedUser}
                     name="Change"

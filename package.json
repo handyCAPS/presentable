@@ -7,7 +7,10 @@
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test-watch": "npm test -- --watch",
     "webpack": "webpack",
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot",
+    "copyPHP": "copyfiles -f ./plugin/presentable/*.php ../wptim/wp-content/plugins/presentable",
+    "watchPHP": "watch \"npm run copyPHP\" ./plugin/",
+    "livereload": "livereload --port 9091 ./plugin/"
   },
   "repository": {
     "type": "git",
@@ -50,6 +53,7 @@
     "react-addons-test-utils": "^15.2.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "watch": "^0.19.2",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }

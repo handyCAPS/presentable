@@ -20,7 +20,7 @@ const Main = React.createClass({
     },
 
     componentDidMount() {
-        this.fetchAndSetAllPersonel('./dist/js/json/personel.json');
+        this.fetchAndSetAllPersonel('./dist/js/json/personel2.json');
     },
 
     handleSelectUser(index) {
@@ -32,7 +32,7 @@ const Main = React.createClass({
             wrap: ['top-slider'],
             name: []
         };
-        if (this.props.personel[this.props.selectedUser.index].In) {
+        if (this.props.personel[this.props.selectedUser.index].present) {
             classNames.name.push('present');
         }
         return classNames;
@@ -45,7 +45,7 @@ const Main = React.createClass({
                 <h1 className="site-header">Presentable</h1>
                 {MainUser && <NameSlide
                     index={this.props.selectedUser.index}
-                    name={MainUser.Name}
+                    name={MainUser.name}
                     classNames={this.getNameSlideClassNames()}
                     handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index)} />}
                 <div className="wrapper wrapper__personel">

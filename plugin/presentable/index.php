@@ -64,9 +64,7 @@ function add_presentable_post_type() {
         'rewrite'             => true,
         'capability_type'     => 'post',
         'supports'            => array(
-            'title', 'editor', 'author', 'thumbnail',
-            'excerpt','custom-fields', 'trackbacks', 'comments',
-            'revisions', 'page-attributes', 'post-formats'
+            'title','custom-fields', 'revisions', 'page-attributes', 'post-formats'
             )
     );
 
@@ -74,3 +72,14 @@ function add_presentable_post_type() {
 }
 
 add_action( 'init', 'add_presentable_post_type' );
+
+
+// Liveload for dev
+
+function livereload_script()
+{
+    wp_register_script('livereload', '//localhost:9091', array(), 1, true);
+    wp_enqueue_script('livereload' );
+}
+
+add_action('wp_enqueue_scripts', 'livereload_script');
