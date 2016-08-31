@@ -17,4 +17,4 @@ while ($row = $result->fetch_assoc()) {
     }, $row);
 }
 
-file_put_contents('personel.json',json_encode($personelArray));
+file_put_contents('personel2.json',json_encode($personelArray));

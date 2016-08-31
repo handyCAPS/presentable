@@ -8,14 +8,6 @@ import NameSlide from './NameSlide';
 import CountingClock from './CountingClock';
 
 const Info = React.createClass({
-    getInitialState() {
-        return {
-            timer: {
-                started: 0,
-                timePassed: 0
-            }
-        };
-    },
     getNiceTime(timestamp) {
         const time = new Date(timestamp);
         let mins = time.getMinutes();
@@ -68,12 +60,11 @@ const Info = React.createClass({
 
         classList.push(presenceClass);
 
-        const lastText = this.getNiceTime(User.LastChange);
+        const lastText = this.getNiceTime(User.lastChange);
 
         return (
             <div className={classList.join(' ')}>
-                <h2 className="info__header">{User.Name}</h2>
-                <p>{this.getTimeString(Timing.getPassedSeconds(User.lastChange))}</p>
+                <h2 className="info__header">{User.name}</h2>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label={lastLabel} text={lastText} />
                 <CountingClock timer={Timing.getTimerObject(User.lastChange)} timestamp={User.lastChange} />

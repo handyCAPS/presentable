@@ -5,7 +5,7 @@ import NameSlide from './NameSlide';
 const PersonelList = React.createClass({
 
     handleClick(index) {
-        this.props.handleSelectUser(this.props.index);
+        this.props.handleSelectUser(index);
     },
 
     render() {
