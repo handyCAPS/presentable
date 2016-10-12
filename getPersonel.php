@@ -54,6 +54,21 @@ for ($i = 0; $i < count($people); $i++) {
 
 $firstPerson = new Person('Tim', 1);
 
-echo "<pre>";
-print_r(json_encode(['personel' => $personel]));
-echo "</pre>";
+$conn = mysqli_connect('localhost', 'root', '', 'presentable');
+
+$sql = "SELECT * from personel";
+
+$result = $conn->query($sql);
+
+
+$personelArray = ["personel" => []];
+
+while ($row = $result->fetch_assoc()) {
+    // var_dump($row);
+    $personelArray["personel"][] = array_map(function($a) {
+        if (preg_match('/[^0-9]/', $a) !== 1) {return (int) $a; }
+        return $a;
+    }, $row);
+}
+
+echo json_encode($personelArray);

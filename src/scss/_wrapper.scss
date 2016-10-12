@@ -17,3 +17,11 @@ $rightWidth: 50 + %;
     width: $rightWidth;
     float: left;
 }
+
+.wrapper--inner {
+    opacity: 0.01;
+    transition: opacity 1s;
+        &.loaded {
+            opacity: 1;
+        }
+}

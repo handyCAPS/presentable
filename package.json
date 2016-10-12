@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/handyCAPS/presentable#readme",
   "dependencies": {
+    "firebase": "^3.4.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",

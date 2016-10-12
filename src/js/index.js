@@ -14,6 +14,12 @@ import style from '../scss/main.scss';
 
 import App from './App';
 
+import firebase from 'firebase';
+
+import config from './configs/firebase';
+
+firebase.initializeApp(config);
+
 
 const Presentable = (
     <Provider store={Store}>

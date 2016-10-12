@@ -1,5 +1,6 @@
 
 import React from 'react';
+import firebase from 'firebase';
 
 import 'whatwg-fetch';
 
@@ -8,6 +9,16 @@ import Info from './Info';
 import NameSlide from './NameSlide';
 
 const Main = React.createClass({
+
+    setFirebaseListener() {
+        const personelRef = firebase.database().ref().child('state').child('personel');
+
+        personelRef.on('value', snap => {
+            document.getElementsByClassName('wrapper--inner')[0].classList.add('loaded');
+            const personel = snap.val();
+            this.props.updatePersonel(personel);
+        });
+    },
 
     fetchAndSetAllPersonel(url) {
         fetch(url)
@@ -20,7 +31,7 @@ const Main = React.createClass({
     },
 
     componentDidMount() {
-        this.fetchAndSetAllPersonel('./dist/js/json/personel2.json');
+        this.setFirebaseListener();
     },
 
     handleSelectUser(index) {
@@ -43,16 +54,18 @@ const Main = React.createClass({
         return (
             <main className="mainWrap">
                 <h1 className="site-header">Presentable</h1>
-                {MainUser && <NameSlide
-                    index={this.props.selectedUser.index}
-                    name={MainUser.name}
-                    classNames={this.getNameSlideClassNames()}
-                    handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index)} />}
-                <div className="wrapper wrapper__personel">
-                    <PersonelList handleSelectUser={this.handleSelectUser} {...this.props} />
-                </div>
-                <div className="wrapper wrapper__info">
-                    {MainUser && <Info selectedUser={this.props.selectedUser.index} {...this.props} />}
+                <div className="wrapper wrapper--inner">
+                    {MainUser && <NameSlide
+                        index={this.props.selectedUser.index}
+                        name={MainUser.name}
+                        classNames={this.getNameSlideClassNames()}
+                        handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index)} />}
+                    <div className="wrapper wrapper__personel">
+                        <PersonelList handleSelectUser={this.handleSelectUser} {...this.props} />
+                    </div>
+                    <div className="wrapper wrapper__info">
+                        {MainUser && <Info selectedUser={this.props.selectedUser.index} {...this.props} />}
+                    </div>
                 </div>
             </main>
             );
