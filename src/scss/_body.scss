@@ -13,6 +13,15 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 0 0.618em;
 }
 
+a {
+    text-decoration: none;
+    color: currentColor;
+        &:focus {
+            border: none;
+            outline: none;
+        }
+}
+
 .mainWrap {
     max-width: 1200px;
     margin: 0 auto;

@@ -6,24 +6,39 @@ import { render } from 'react-dom';
 
 import { Provider } from 'react-redux';
 
+import firebase from 'firebase';
 
-import Store from './Store';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+
+
+import Store, { History } from './Store';
 
 import style from '../scss/main.scss';
 
 
 import App from './App';
 
-import firebase from 'firebase';
+import Root from './components/Root';
+import Main from './components/Main';
+import Login from './components/Login';
+
 
 import config from './configs/firebase';
 
 firebase.initializeApp(config);
 
 
+let isLoggedIn = true;
+
 const Presentable = (
     <Provider store={Store}>
-        <App />
+        <Router history={History}>
+        	<Route path="/" component={App}>
+        		{isLoggedIn && <IndexRoute component={Main}></IndexRoute>}
+        		{!isLoggedIn && <IndexRoute component={Login}></IndexRoute>}
+        		<Route path="login" component={Login}></Route>
+        	</Route>
+        </Router>
     </Provider>
     );
 

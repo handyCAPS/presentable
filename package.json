@@ -30,6 +30,8 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
     "redux": "^3.5.2",
     "whatwg-fetch": "^1.0.0"
   },
@@ -52,6 +54,7 @@
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "^15.2.1",
+    "redux-thunk": "^2.1.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "watch": "^0.19.2",

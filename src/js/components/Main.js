@@ -20,18 +20,8 @@ const Main = React.createClass({
         });
     },
 
-    fetchAndSetAllPersonel(url) {
-        fetch(url)
-            .then(response => response.text())
-            .then(responseText => {
-                const StateObject = JSON.parse(responseText);
-                const Personel = StateObject.personel;
-                this.props.updatePersonel(Personel);
-            });
-    },
-
     componentDidMount() {
-        this.setFirebaseListener();
+        this.props.listenToFirebase();
     },
 
     handleSelectUser(index) {
@@ -52,8 +42,6 @@ const Main = React.createClass({
     render() {
         const MainUser = this.props.personel[this.props.selectedUser.index];
         return (
-            <main className="mainWrap">
-                <h1 className="site-header">Presentable</h1>
                 <div className="wrapper wrapper--inner">
                     {MainUser && <NameSlide
                         index={this.props.selectedUser.index}
@@ -66,8 +54,8 @@ const Main = React.createClass({
                     <div className="wrapper wrapper__info">
                         {MainUser && <Info selectedUser={this.props.selectedUser.index} {...this.props} />}
                     </div>
+
                 </div>
-            </main>
             );
     }
 
