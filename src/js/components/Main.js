@@ -47,7 +47,7 @@ const Main = React.createClass({
                         index={this.props.selectedUser.index}
                         name={MainUser.name}
                         classNames={this.getNameSlideClassNames()}
-                        handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index)} />}
+                        handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index, MainUser.present)} />}
                     <div className="wrapper wrapper__personel">
                         <PersonelList handleSelectUser={this.handleSelectUser} {...this.props} />
                     </div>

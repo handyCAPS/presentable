@@ -8,6 +8,9 @@ import NameSlide from './NameSlide';
 import CountingClock from './CountingClock';
 
 const Info = React.createClass({
+    getCurrentUser() {
+        return this.props.personel[this.props.selectedUser.index];
+    },
     getNiceTime(timestamp) {
         const time = new Date(timestamp);
         let mins = time.getMinutes();
@@ -35,11 +38,12 @@ const Info = React.createClass({
 
         return timeString;
     },
-    handleInOutClick() {
-        this.props.changePresence(this.props.selectedUser.index);
+    handleInOutClick(index) {
+        const isPresent = this.getCurrentUser().present;
+        this.props.changePresence(index, isPresent);
     },
     render() {
-        const User = this.props.personel[this.props.selectedUser.index];
+        const User = this.getCurrentUser();
         const isPresent = User.present;
 
         const classList = ['info'];
@@ -69,7 +73,7 @@ const Info = React.createClass({
                 <InfoText label={lastLabel} text={lastText} />
                 <CountingClock timer={Timing.getTimerObject(User.lastChange)} timestamp={User.lastChange} />
                 <NameSlide
-                    index={this.props.selectedUser}
+                    index={this.props.selectedUser.index}
                     name="Change"
                     classNames={classNames}
                     handleClick={this.handleInOutClick}/>
