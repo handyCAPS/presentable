@@ -13,7 +13,11 @@ const middleware = applyMiddleware(thunk);
 
 const defaultState = {
     Personel: [],
+    Users: [],
     SelectedUser: {
+        index: 0
+    },
+    CurrentUser: {
         index: 0
     }
 };

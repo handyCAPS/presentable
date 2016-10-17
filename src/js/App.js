@@ -11,7 +11,9 @@ import Root from './components/Root';
 function mapStateToProps(state) {
     return {
         personel: state.Personel,
-        selectedUser: state.SelectedUser
+        selectedUser: state.SelectedUser,
+        users: state.Users,
+        currentUser: state.CurrentUser
     };
 }
 

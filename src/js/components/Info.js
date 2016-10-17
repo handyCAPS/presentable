@@ -39,8 +39,8 @@ const Info = React.createClass({
         return timeString;
     },
     handleInOutClick(index) {
-        const isPresent = this.getCurrentUser().present;
-        this.props.changePresence(index, isPresent);
+        const person = this.props.personel[index];
+        this.props.changePresence(index, person);
     },
     render() {
         const User = this.getCurrentUser();
@@ -71,6 +71,8 @@ const Info = React.createClass({
                 <h2 className="info__header">{User.name}</h2>
                 <InfoText label="Aanwezig" text={presentText} />
                 <InfoText label={lastLabel} text={lastText} />
+                <InfoText label="Laatst ingeklokt" text={this.getNiceTime(User.lastIn)} />
+                <InfoText label="Laatst uitgeklokt" text={this.getNiceTime(User.lastOut)} />
                 <CountingClock timer={Timing.getTimerObject(User.lastChange)} timestamp={User.lastChange} />
                 <NameSlide
                     index={this.props.selectedUser.index}

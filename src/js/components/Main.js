@@ -28,32 +28,36 @@ const Main = React.createClass({
         this.props.changeSelectedUser(index);
     },
 
-    getNameSlideClassNames() {
+    getNameSlideClassNames(isPresent) {
         let classNames = {
             wrap: ['top-slider'],
             name: []
         };
-        if (this.props.personel[this.props.selectedUser.index].present) {
+        if (isPresent) {
             classNames.name.push('present');
         }
         return classNames;
     },
 
     render() {
-        const MainUser = this.props.personel[this.props.selectedUser.index];
+        const currentUser = this.props.currentUser;
+        const MainUser = this.props.personel[currentUser.index];
+
+        const userIsLoggedIn = false;
+        const userIsAdmin = false;
         return (
                 <div className="wrapper wrapper--inner">
-                    {MainUser && <NameSlide
+                    {userIsLoggedIn && <NameSlide
                         index={this.props.selectedUser.index}
                         name={MainUser.name}
-                        classNames={this.getNameSlideClassNames()}
-                        handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index, MainUser.present)} />}
-                    <div className="wrapper wrapper__personel">
+                        classNames={this.getNameSlideClassNames(MainUser.present)}
+                        handleClick={this.props.changePresence.bind(null, this.props.selectedUser.index, MainUser)} />}
+                    <div className="wrapper wrapper--inline wrapper--personel">
                         <PersonelList handleSelectUser={this.handleSelectUser} {...this.props} />
                     </div>
-                    <div className="wrapper wrapper__info">
-                        {MainUser && <Info selectedUser={this.props.selectedUser.index} {...this.props} />}
-                    </div>
+                    {userIsAdmin && <div className="wrapper wrapper--inline wrapper--info">
+                        <Info selectedUser={this.props.selectedUser.index} {...this.props} />
+                    </div>}
 
                 </div>
             );

@@ -8,20 +8,29 @@ $rightWidth: 50 + %;
     position: relative;
 }
 
-.wrapper__personel {
+.wrapper--personel {
     width: $leftWidth;
-    float: left;
+    margin: 0 auto;
 }
 
-.wrapper__info {
+.wrapper--info {
     width: $rightWidth;
-    float: left;
+    margin: 0 auto;
 }
 
 .wrapper--inner {
+    text-align: center;
+        & > * {
+            text-align: initial;
+        }
     opacity: 0.01;
     transition: opacity 1s;
         &.loaded {
             opacity: 1;
         }
+}
+
+.wrapper--inline {
+    display: inline-block;
+    vertical-align: top;
 }
