@@ -4,8 +4,8 @@ import NameSlide from './NameSlide';
 
 const PersonelList = React.createClass({
 
-    handleClick(index) {
-        this.props.handleSelectUser(index);
+    handleClick(index, person) {
+        this.props.handleClick(index, person, this.props.userIsLoggedIn);
     },
 
     render() {
@@ -29,6 +29,7 @@ const PersonelList = React.createClass({
                             <NameSlide
                                 key={index}
                                 index={index}
+                                person={person}
                                 name={person.name}
                                 classNames={classNames}
                                 handleClick={this.handleClick} />

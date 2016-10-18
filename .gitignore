@@ -11,3 +11,4 @@ dist/
 tmp/
 
 src/js/configs/
+/.gtm/

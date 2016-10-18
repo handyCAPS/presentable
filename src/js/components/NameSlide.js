@@ -7,6 +7,7 @@ import NameSignal from './NameSignal';
 const NameSlide = React.createClass({
     render() {
         const {
+            person,
             name,
             index,
             handleClick,
@@ -22,7 +23,7 @@ const NameSlide = React.createClass({
                         <NameSignal type="in" />
                         <div
                             className={classListName.join(' ')}
-                            onClick={handleClick.bind(null, index)}>
+                            onClick={handleClick.bind(null, index, person)}>
                             {name}
                         </div>
                         <NameSignal type="out" />
