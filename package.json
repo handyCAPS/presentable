@@ -7,6 +7,7 @@
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test-watch": "npm test -- --watch",
     "webpack": "webpack",
+    "webpack-optimized": "webpack --optimize-minimize --optimize-dedupe",
     "start": "webpack-dev-server --hot",
     "copyPHP": "copyfiles -f ./plugin/presentable/*.php ../wptim/wp-content/plugins/presentable",
     "watchPHP": "watch \"npm run copyPHP\" ./plugin/",
