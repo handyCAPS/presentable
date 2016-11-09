@@ -5,7 +5,6 @@ import NameSignal from './NameSignal';
 
 
 const NameSlide = ({
-            person,
             name,
             index,
             handleClick = () => {},
@@ -18,7 +17,7 @@ const NameSlide = ({
                 <NameSignal type="in" />
                 <div
                     className={['name-slide__name', ...classNames.name].join(' ')}
-                    onClick={handleClick.bind(null, index, person)}>
+                    onClick={handleClick.bind(null, index)}>
                     {name}
                 </div>
                 <NameSignal type="out" />

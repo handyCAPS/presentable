@@ -8,9 +8,6 @@ import NameSlide from './NameSlide';
 import CountingClock from './CountingClock';
 
 const Info = React.createClass({
-    getCurrentUser() {
-        return this.props.personel[this.props.currentUser.id];
-    },
     getNiceTime(timestamp) {
         const time = new Date(timestamp);
         let mins = time.getMinutes();
