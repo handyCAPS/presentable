@@ -3,11 +3,14 @@ import React from 'react';
 
 const InfoText = ({
     label,
-    text
+    text,
+    classNamesWrap = [],
+    classNamesLabel = [],
+    classNamesValue = []
 }) => (
-    <p className="info__text">
-        <span className="info__label">{label}:</span>
-        <span className="info__value"> {text}</span>
+    <p className={['info__text', ...classNamesWrap].join(' ')}>
+        <span className={['info__label', ...classNamesLabel].join(' ')}>{label}:</span>
+        <span className={['info__value', ...classNamesValue].join(' ')}> {text}</span>
     </p>
     );
 
