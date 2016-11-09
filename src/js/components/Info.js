@@ -9,7 +9,7 @@ import CountingClock from './CountingClock';
 
 const Info = React.createClass({
     getCurrentUser() {
-        return this.props.personel[this.props.selectedUser.index];
+        return this.props.personel[this.props.currentUser.id];
     },
     getNiceTime(timestamp) {
         const time = new Date(timestamp);
@@ -43,7 +43,7 @@ const Info = React.createClass({
         this.props.changePresence(index, person);
     },
     render() {
-        const User = this.getCurrentUser();
+        const User = this.props.user;
         const isPresent = User.present;
 
         const classList = ['info'];

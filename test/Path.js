@@ -9,7 +9,7 @@ const Path = {
     components: path.resolve(__dirname, rootString + '/components'),
     reducers: path.resolve(__dirname, rootString + '/reducers'),
     utils: path.resolve(__dirname, rootString + '/utils'),
-    json: path.resolve(__dirname, rootString + '/json')
+    json: '../json'
 };
 
 export default Path;

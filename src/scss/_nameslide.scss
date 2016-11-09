@@ -1,9 +1,9 @@
 
-.name-slider {
+.name-slide {
     font-size: 1.5rem;
     position: relative;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1em;
     box-shadow: 0 0 0.818rem rgba(0,0,0,0.17);
         &:hover, &:active {
             background-color: rgba(lightgrey, 0.5);
@@ -14,7 +14,7 @@
         }
 }
 
-.name-slider__name {
+.name-slide__name {
     cursor: pointer;
     color: #555;
     text-align: center;

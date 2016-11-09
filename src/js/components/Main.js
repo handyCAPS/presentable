@@ -54,7 +54,7 @@ const Main = React.createClass({
         const userIsAdmin = false;
         return (
                 <div className="wrapper wrapper--inner">
-                    {userIsLoggedIn && 
+                    {userIsLoggedIn &&
                             <NameSlide
                                 index={this.props.selectedUser.index}
                                 name={MainUser.name}
@@ -64,7 +64,7 @@ const Main = React.createClass({
                     <div className="wrapper wrapper--inline wrapper--personel">
                         <PersonelList handleClick={this.handleSlideClick} userIsLoggedIn={userIsLoggedIn} {...this.props} />
                     </div>
-                    {userIsAdmin && 
+                    {userIsAdmin &&
                         <div className="wrapper wrapper--inline wrapper--info">
                             <Info selectedUser={this.props.selectedUser.index} {...this.props} />
                         </div>

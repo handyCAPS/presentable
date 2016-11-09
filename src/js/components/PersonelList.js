@@ -15,7 +15,7 @@ const PersonelList = React.createClass({
                     {this.props.personel.map((person, index) => {
                         let classNamesWrap = [];
                         let classNamesName = ['personel__name'];
-                        if (this.props.selectedUser.index === index) {
+                        if (this.props.userIsAdmin && this.props.selectedUser.index === index) {
                             classNamesName.push('isSelectedUser');
                         }
                         if (person.present) {
