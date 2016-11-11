@@ -13,10 +13,11 @@ const NameSignal = require(Path.components + '/NameSignal.js').default;
 
 describe("<NameSlide />", () => {
 
+    const selectedUserIndex = 0;
+
     const mockProps = {
-        person: Personel[0],
-        name: Personel[0].name,
-        index: 0
+        name: Personel[selectedUserIndex].name,
+        index: selectedUserIndex
     };
 
     let slide;
@@ -52,29 +53,24 @@ describe("<NameSlide />", () => {
     });
 
     it('should take custom classes for the wrapper (.name-slide)', () => {
-        const classNames = {
-            wrap: ['myCustomClass'],
-            name: ['somename']
-        };
+        const classNamesWrap = ['myCustomClass'];
         const mockPropsCustom = {
             ...mockProps,
-            classNames
+            classNamesWrap
         };
         const slideCustom = shallow(<NameSlide {...mockPropsCustom} />);
-        expect(slideCustom.hasClass(classNames.wrap)).to.be.true;
+        expect(slideCustom.hasClass(classNamesWrap)).to.be.true;
     });
 
     it('should take custom classes for the name wrapper (.name-slide__name)', () => {
-        const classNames = {
-            wrap: ['myCustomClass'],
-            name: ['somename']
-        };
+        const classNamesName = ['myCustomClass'];
+
         const mockPropsCustom = {
             ...mockProps,
-            classNames
+            classNamesName
         };
         const slideCustom = shallow(<NameSlide {...mockPropsCustom} />);
-        expect(slideCustom.find('.name-slide__name').hasClass(classNames.name)).to.be.true;
+        expect(slideCustom.find('.name-slide__name').hasClass(classNamesName)).to.be.true;
     });
 
     it('should have the name of the currentUser', () => {
@@ -88,7 +84,7 @@ describe("<NameSlide />", () => {
             handleClick: spy
         };
         const customSlide = shallow(<NameSlide {...customMockProps} />);
-        customSlide.find('.name-slide__name').simulate('click');
+        customSlide.simulate('click');
         expect(spy.calledOnce).to.be.true;
     });
 
@@ -99,7 +95,7 @@ describe("<NameSlide />", () => {
             handleClick: spy
         };
         const customSlide = shallow(<NameSlide {...customMockProps} />);
-        customSlide.find('.name-slide__name').simulate('click');
+        customSlide.simulate('click');
         expect(spy.args[0][0]).to.equal(customMockProps.index);
     });
 });

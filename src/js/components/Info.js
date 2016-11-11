@@ -35,47 +35,68 @@ const Info = React.createClass({
 
         return timeString;
     },
-    handleInOutClick(index) {
-        const person = this.props.personel[index];
-        this.props.changePresence(index, person);
-    },
     render() {
-        const User = this.props.user;
-        const isPresent = User.present;
+        const {
+            index,
+            name,
+            userIsPresent,
+            lastIn,
+            lastOut,
+            lastChange,
+            handleInfoNameSlideClick = () => {}
+        } = this.props;
 
         const classList = ['info'];
         let presenceClass = 'isNotPresent';
         let presentText = 'Nee';
         let lastLabel = 'Laatst aanwezig';
-        let classNames = {
-            wrap: ['info__name-slider'],
-            name: []
-        };
 
-        if (isPresent) {
+        let classNamesName = [];
+        let classNamesWrap = [];
+
+        if (userIsPresent) {
             presenceClass = 'isPresent';
             presentText = 'Ja';
             lastLabel = 'Laatst afwezig';
-            classNames.name.push('present');
+            classNamesName.push('present');
         }
 
         classList.push(presenceClass);
 
-        const lastText = this.getNiceTime(User.lastChange);
+        const lastText = this.getNiceTime(lastChange);
+
+        const infoTexts = [
+            {
+                label: "Aanwezig",
+                text: presentText
+            },
+            {
+                label: lastLabel,
+                text: lastText
+            },
+            {
+                label: "Laatst ingeklokt",
+                text: this.getNiceTime(lastIn)
+            },
+            {
+                label: "Laatst uitgeklokt",
+                text: this.getNiceTime(lastOut)
+            }
+        ];
 
         return (
             <div className={classList.join(' ')}>
-                <h2 className="info__header">{User.name}</h2>
-                <InfoText label="Aanwezig" text={presentText} />
-                <InfoText label={lastLabel} text={lastText} />
-                <InfoText label="Laatst ingeklokt" text={this.getNiceTime(User.lastIn)} />
-                <InfoText label="Laatst uitgeklokt" text={this.getNiceTime(User.lastOut)} />
-                <CountingClock timer={Timing.getTimerObject(User.lastChange)} timestamp={User.lastChange} />
+                <h2 className="info__header">{name}</h2>
+                {infoTexts.map((iText, i) => (
+                    <InfoText key={i} label={iText.label} text={iText.text} />
+                    ))}
+                <CountingClock timer={Timing.getTimerObject(lastChange)} timestamp={lastChange} />
                 <NameSlide
-                    index={this.props.selectedUser.index}
+                    index={index}
                     name="Change"
-                    classNames={classNames}
-                    handleClick={this.handleInOutClick}/>
+                    classNamesName={classNamesName}
+                    classNamesWrap={classNamesWrap}
+                    handleClick={handleInfoNameSlideClick}/>
             </div>
             );
     }
