@@ -21,7 +21,7 @@ const PersonelList = React.createClass({
                         let classNamesWrap = [];
                         let classNamesName = ['personel__name'];
                         if (selectedUser.index === index) {
-                            classNamesName.push('isSelectedUser');
+                            classNamesWrap.push('isSelectedUser');
                         }
                         if (person.present) {
                             classNamesName.push('present');

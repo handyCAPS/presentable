@@ -1,10 +1,12 @@
 
 .name-slide {
+    cursor: pointer;
     font-size: 1.5rem;
     position: relative;
     width: 100%;
     margin-bottom: 1em;
     box-shadow: 0 0 0.818rem rgba(0,0,0,0.17);
+    transition: transform 0.4s;
         &:hover, &:active {
             background-color: rgba(lightgrey, 0.5);
         }
@@ -12,10 +14,14 @@
             display: inline-block;
             padding: 0.618em 0;
         }
+        &.isSelectedUser {
+            background-color: lightgrey;
+            transform: scale(1.1);
+            transition-timing-function: cubic-bezier(0, 0.36, 0.70, 2);
+        }
 }
 
 .name-slide__name {
-    cursor: pointer;
     color: #555;
     text-align: center;
     position: absolute;
@@ -26,9 +32,6 @@
     transition: 0.3s linear;
         &.present {
             left: 100px;
-        }
-        &.isSelectedUser {
-            background-color: lightgrey;
         }
 }
 
