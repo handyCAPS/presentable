@@ -25,9 +25,13 @@ $rightWidth: 50 + %;
         }
     opacity: 0.01;
     transition: opacity 1s;
-        &.loaded {
-            opacity: 1;
-        }
+        // &.loaded {
+        //     opacity: 1;
+        // }
+}
+
+.loaded .wrapper--inner {
+    opacity: 1;
 }
 
 .wrapper--inline {

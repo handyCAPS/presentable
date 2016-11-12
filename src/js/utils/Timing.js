@@ -82,6 +82,33 @@ const Timing = {
         }
 
         return timerObject;
+    },
+    getNiceTime(timestamp) {
+        const time = new Date(timestamp);
+        let mins = time.getMinutes();
+        if (mins < 10) { mins = '0' + mins; }
+        const timeString = time.toLocaleDateString() + " om " + time.getHours() + ':' + mins;
+        return timeString;
+    },
+    getTimeString(seconds) {
+        const times = this.getTimeByUnit(seconds);
+
+        const verbs = {
+            days: 'dagen',
+            hours: 'uur',
+            minutes: 'minuten',
+            seconds: 'seconden'
+        };
+
+        const timeArray = [];
+
+        for (let unit in verbs) {
+            timeArray.push([times[unit], verbs[unit]]);
+        }
+
+        const timeString = timeArray.map(v => v.join(' ')).join(', ');
+
+        return timeString;
     }
 };
 

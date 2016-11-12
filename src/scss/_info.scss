@@ -4,7 +4,7 @@
     margin: 0 auto;
     background-color: #FCFCFC;
     box-shadow: 0 0 0.818rem rgba(0,0,0,0.17), inset 0 0 0.18rem rgba($red,0.7);
-    padding: 0.618em;
+    padding: 1.618em;
     transition: box-shadow 0.3s;
         &.isPresent {
             box-shadow: 0 0 0.818rem rgba(0,0,0,0.17), inset 0 0 0.18rem rgba($green,0.7);

@@ -39,19 +39,18 @@ const Main = React.createClass({
         return classNames;
     },
 
-    handleSlideClick(person, loggedIn) {
-        if (loggedIn) {
-            return this.handleSelectUser(person.index);
-        }
-        this.props.changePresence(person.index, person);
+    handleSlideClick(index) {
+        const person = this.props.personel[index];
+        console.log("Person and index: ", index, person);
+        this.props.changePresence(index, person);
     },
 
     render() {
-        const currentUser = this.props.currentUser;
+        const currentUser = this.props.selectedUser;
         const MainUser = this.props.personel[currentUser.index];
 
         const userIsLoggedIn = false;
-        const userIsAdmin = false;
+        const userIsAdmin = true;
         return (
                 <div className="wrapper wrapper--inner">
                     {userIsLoggedIn &&
@@ -59,14 +58,14 @@ const Main = React.createClass({
                                 index={this.props.selectedUser.index}
                                 name={MainUser.name}
                                 classNames={this.getNameSlideClassNames(MainUser.present)}
-                                handleClick={this.handleSlideClick(MainUser.index, userIsLoggedIn)} />
+                                handleClick={this.handleSlideClick} />
                     }
                     <div className="wrapper wrapper--inline wrapper--personel">
-                        <PersonelList handleClick={this.handleSlideClick} userIsLoggedIn={userIsLoggedIn} {...this.props} />
+                        <PersonelList handleClick={this.handleSelectUser} userIsLoggedIn={userIsLoggedIn} {...this.props} />
                     </div>
                     {userIsAdmin &&
                         <div className="wrapper wrapper--inline wrapper--info">
-                            <Info selectedUser={this.props.selectedUser.index} {...this.props} />
+                            <Info {...MainUser} handleInfoNameSlideClick={this.handleSlideClick} />
                         </div>
                     }
 

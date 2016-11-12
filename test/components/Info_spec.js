@@ -21,20 +21,15 @@ describe('<Info />', () => {
     let InfoMock;
     const selectedUser = { index: 0 };
     const User = Personel[selectedUser.index];
-    const userIsPresent = User.present;
     const {
         name,
+        present,
         lastIn,
         lastOut,
         lastChange
     } = User;
     const mockProps = {
-        index: selectedUser.index,
-        name,
-        userIsPresent,
-        lastIn,
-        lastOut,
-        lastChange
+        ...User
     };
 
     beforeEach(() => {
@@ -68,7 +63,7 @@ describe('<Info />', () => {
             present: 'isPresent',
             notPresent: 'isNotPresent'
         };
-        const InfoNotPresent = shallow(<Info selectedUser={{index: 1}} personel={Personel} user={Personel[1]} />);
+        const InfoNotPresent = shallow(<Info {...Personel[1]} />);
         expect(InfoNotPresent.hasClass(classes.notPresent)).to.be.true;
         expect(InfoNotPresent.hasClass(classes.present)).to.not.be.true;
         expect(InfoMock.hasClass(classes.present)).to.be.true;
@@ -85,7 +80,7 @@ describe('<Info />', () => {
 
     it('should contain a NameSlide with a class of present if the user is present', () => {
         const actual = InfoMock.find(NameSlide).props().classNamesName.indexOf('present') != -1;
-        expect(actual).to.equal(userIsPresent);
+        expect(actual).to.equal(User.present);
     });
 
     it('should contain four <InfoText> elements', () => {
@@ -100,12 +95,10 @@ describe('<Info />', () => {
         };
         const customMockinfo = mount(<Info {...customMockProps} />);
         customMockinfo.find(NameSlide).simulate('click');
-        // customMockinfo.unmount();
         expect(spy.calledOnce).to.be.true;
     });
 
-// TODO: figure out why this always passes
-    it('should trigger the callback with the passed index as the first parameter when the NameSlide gets clicked', () => {
+    it('should trigger the callback with the passed index as the first argument when the NameSlide gets clicked', () => {
         const spy = sinon.spy();
         const customMockProps = {
             ...mockProps,
@@ -114,7 +107,6 @@ describe('<Info />', () => {
         const customMockinfo = mount(<Info {...customMockProps} />);
         customMockinfo.find(NameSlide).simulate('click');
         expect(spy.calledWith(selectedUser.index)).to.be.true;
-        // customMockinfo.unmount();
         expect(spy.args[0][0]).to.equal(selectedUser.index);
     });
 });

@@ -4,34 +4,36 @@ import NameSlide from './NameSlide';
 
 const PersonelList = React.createClass({
 
-    handleClick(index, person) {
-        this.props.handleClick(index, person, this.props.userIsLoggedIn);
+    handleClick(index) {
+        console.log("index: " + index);
+        this.props.handleClick(index);
     },
 
     render() {
+        const {
+            personel,
+            selectedUser
+        } = this.props;
         return (
             <div className="personel">
                 <div className="personel__list">
-                    {this.props.personel.map((person, index) => {
+                    {personel.map((person, index) => {
                         let classNamesWrap = [];
                         let classNamesName = ['personel__name'];
-                        if (this.props.userIsAdmin && this.props.selectedUser.index === index) {
+                        if (selectedUser.index === index) {
                             classNamesName.push('isSelectedUser');
                         }
                         if (person.present) {
                             classNamesName.push('present');
                         }
-                        const classNames = {
-                            wrap: classNamesWrap,
-                            name: classNamesName
-                        };
+
                         return (
                             <NameSlide
                                 key={index}
                                 index={index}
-                                person={person}
                                 name={person.name}
-                                classNames={classNames}
+                                classNamesName={classNamesName}
+                                classNamesWrap={classNamesWrap}
                                 handleClick={this.handleClick} />
                             );
                     })}

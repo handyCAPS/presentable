@@ -14,14 +14,14 @@ export function changePresence(index, person) {
             lastOut: isPresent ? Now : person.lastOut,
             present: !isPresent
         };
-        // dispatch({
-        //     type: 'CHANGE_PRESENCE',
-        //     index,
-        //     newState
-        // });
-        const currentUserRef = firebase.database().ref('state/personel/' + index );
+        dispatch({
+            type: 'CHANGE_PRESENCE',
+            index,
+            newState
+        });
+        // const currentUserRef = firebase.database().ref('state/personel/' + index );
 
-        currentUserRef.set(newState);
+        // currentUserRef.set(newState);
     };
 }
 
@@ -47,7 +47,7 @@ export function listenToFirebase() {
 
         personelRef.on('value', snap => {
             if (isFirst) {
-                document.getElementsByClassName('wrapper--inner')[0].classList.add('loaded');
+                document.body.classList.add('loaded');
                 isFirst = false;
             }
             const personel = snap.val();
