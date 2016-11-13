@@ -10,6 +10,10 @@ import NameSlide from './NameSlide';
 
 const Main = React.createClass({
 
+    userIsAdmin: true,
+    userIsSuperAdmin: true,
+    userIsLoggedIn: false,
+
     setFirebaseListener() {
         const personelRef = firebase.database().ref().child('state').child('personel');
 
@@ -39,33 +43,44 @@ const Main = React.createClass({
         return classNames;
     },
 
-    handleSlideClick(index) {
+    setPersonPresence(index) {
         const person = this.props.personel[index];
-        console.log("Person and index: ", index, person);
         this.props.changePresence(index, person);
+    },
+
+    handleInfoNameSlideClick(index) {
+        this.setPersonPresence(index);
+    },
+
+    handlePersonelNameSlideClick(index) {
+        this.userIsSuperAdmin = false;
+        if (this.userIsSuperAdmin) {
+            this.setPersonPresence(index);
+        } else {
+            this.handleSelectUser(index);
+        }
     },
 
     render() {
         const currentUser = this.props.selectedUser;
         const MainUser = this.props.personel[currentUser.index];
 
-        const userIsLoggedIn = false;
-        const userIsAdmin = true;
+        let selectedUser = this.userIsAdmin ? currentUser : -1;
         return (
                 <div className="wrapper wrapper--inner">
-                    {userIsLoggedIn &&
+                    {this.userIsLoggedIn &&
                             <NameSlide
                                 index={this.props.selectedUser.index}
                                 name={MainUser.name}
                                 classNames={this.getNameSlideClassNames(MainUser.present)}
-                                handleClick={this.handleSlideClick} />
+                                handleClick={this.handleTopSlideClick} />
                     }
                     <div className="wrapper wrapper--inline wrapper--personel">
-                        <PersonelList handleClick={this.handleSelectUser} userIsLoggedIn={userIsLoggedIn} {...this.props} />
+                        <PersonelList handleClick={this.handlePersonelNameSlideClick} personel={this.props.personel} selectedUser={selectedUser} />
                     </div>
-                    {userIsAdmin &&
+                    {this.userIsAdmin &&
                         <div className="wrapper wrapper--inline wrapper--info">
-                            <Info {...MainUser} handleInfoNameSlideClick={this.handleSlideClick} />
+                            <Info {...MainUser} handleInfoNameSlideClick={this.handleInfoNameSlideClick} />
                         </div>
                     }
 
